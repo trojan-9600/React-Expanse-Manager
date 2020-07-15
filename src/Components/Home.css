@@ -1,0 +1,12 @@
+.userForm {
+  border: 1px solid black;
+  width: auto;
+  max-width: 250px;
+  float: left;
+}
+.userList {
+  border: 1px solid black;
+  min-height: 500px;
+  float: right;
+  width: 1000px;
+}

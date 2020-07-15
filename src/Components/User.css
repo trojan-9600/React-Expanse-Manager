@@ -1,0 +1,25 @@
+.userName {
+  float: left;
+}
+#backbutton {
+  display: block;
+  position: relative;
+  float: right;
+}
+.header {
+  width: 100%;
+  background-color: rgb(145, 163, 201);
+}
+.expanse-Box {
+  min-height: 500px;
+  padding: 10px;
+}
+.income-Box {
+  min-height: 500px;
+  padding: 10px;
+}
+.inputForm {
+  min-height: 500px;
+
+  padding: 10px;
+}
