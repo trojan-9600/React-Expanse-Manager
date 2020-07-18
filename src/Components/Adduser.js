@@ -4,14 +4,13 @@ import "./Home.css";
 import axios from "axios";
 //import { Redirect } from "react-router";
 
-export default class Adduser extends Component {
+export default class Adduser extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       name: "",
       email: "",
-      users: [],
       // redirect: false,
     };
     this.nameChange = this.nameChange.bind(this);
@@ -44,7 +43,7 @@ export default class Adduser extends Component {
           // redirect: true,
         });
       });
-    this.props.fetchuserarray(this.state.users);
+
     this.setState({
       name: "",
       email: "",

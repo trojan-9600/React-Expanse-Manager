@@ -12,36 +12,10 @@ class UserList extends Component {
       users: [],
       redirect: false,
     };
-    this.update = this.update.bind(this);
-  }
-  componentDidMount() {
-    axios
-      .get("http://localhost/expanse_manager/list.php")
-      .then((res) => {
-        this.setState({
-          users: res.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  update() {
-    axios
-      .get("http://localhost/expanse_manager/list.php")
-      .then((res) => {
-        this.setState({
-          users: res.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   userList() {
-    return this.state.users.map(function (object, i) {
+    return this.props.obj.map(function (object, i) {
       return <AllUsers obj={object} key={i} />;
     });
   }
@@ -51,9 +25,6 @@ class UserList extends Component {
       <div className="userList">
         <center>
           <h2>User List</h2>
-          <Button onClick={this.update} variant="outlined" color="primary">
-            Update
-          </Button>
 
           <table className="table table-striped" style={{ marginTop: 20 }}>
             <thead>

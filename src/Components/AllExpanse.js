@@ -14,6 +14,25 @@ export default class AllExpanse extends Component {
       amount: this.props.obj.amount,
     };
     this.delete = this.delete.bind(this);
+    this.Update = this.Update.bind(this);
+  }
+  Update() {
+    const obj = {
+      uid: this.props.user,
+      id: this.state.id,
+      name: this.state.name,
+      category: this.state.category,
+      desc: this.state.desc,
+      amount: this.state.amount,
+    };
+
+    console.log(obj);
+    axios
+      .post("http://localhost/expanse_manager/update_expanse.php", obj)
+      .then((res) => {
+        console.log(res.data);
+      }, this.setState({}))
+      .catch((err) => console.log(err));
   }
 
   delete() {

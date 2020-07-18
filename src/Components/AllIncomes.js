@@ -8,7 +8,6 @@ export default class AllIncomes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false,
       id: this.props.obj.id,
       name: this.props.obj.I_name,
       category: this.props.obj.category,
@@ -18,40 +17,35 @@ export default class AllIncomes extends Component {
     this.delete = this.delete.bind(this);
     this.Update = this.Update.bind(this);
   }
-  componentDidMount() {
-    const { user } = this.props.user;
-  }
+
   delete() {
     axios
       .get(
         "http://localhost/expanse_manager/delete_income.php?id=" +
           this.props.obj.id
       )
-      .then(
-        this.setState({
-          redirect: true,
-        })
-      )
+      .then(this.setState({}))
       .catch((err) => console.log(err));
   }
-  update() {
+  Update() {
+    const obj = {
+      uid: this.props.user,
+      id: this.state.id,
+      name: this.state.name,
+      category: this.state.category,
+      desc: this.state.desc,
+      amount: this.state.amount,
+    };
+
+    console.log(obj);
     axios
-      .get(
-        "http://localhost/expanse_manager/delete_income.php?id=" +
-          this.props.obj.id
-      )
-      .then(
-        this.setState({
-          redirect: true,
-        })
-      )
+      .post("http://localhost/expanse_manager/update_income.php", obj)
+      .then((res) => {
+        console.log(res.data);
+      }, this.setState({}))
       .catch((err) => console.log(err));
   }
   render() {
-    const { redirect } = this.state;
-    if (redirect) {
-      return <Redirect to="/" />;
-    }
     return (
       <tr>
         <td>{this.props.obj.id}</td>

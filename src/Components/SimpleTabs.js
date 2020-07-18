@@ -63,7 +63,7 @@ export default function SimpleTabs(props) {
 
   function tableExpanse() {
     return props.expanses.map(function (object, i) {
-      return <AllExpanses obj={object} key={i} />;
+      return <AllExpanses obj={object} user={props.currentuser} key={i} />;
     });
   }
   function tableIncomes() {
@@ -97,7 +97,7 @@ export default function SimpleTabs(props) {
             >
               <Button variant="contained" color="primary">
                 Income
-              </Button>
+              </Button>{" "}
             </Link>
             <Link
               to={{
@@ -113,15 +113,19 @@ export default function SimpleTabs(props) {
             </Link>
           </center>
           <Switch>
-            <Route path="/incomeform" component={Incomeform} />
-            <Route path="/expanseform" component={Expanseform} />
+            <Route path="/incomeform" component={Incomeform} key={Incomeform} />
+            <Route
+              path="/expanseform"
+              component={Expanseform}
+              key={Expanseform}
+            />
           </Switch>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div className="expanse-Box">
-          <div class="table-responsive">
-            <table class="table">
+          <div className="table-responsive">
+            <table className="table">
               <thead>
                 <tr>
                   <th>Index</th>
@@ -139,11 +143,11 @@ export default function SimpleTabs(props) {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <div className="income-Box">
-          <div class="table-responsive">
-            <table class="table">
+          <div className="table-responsive">
+            <table className="table">
               <thead>
                 <tr>
-                  <th>Inswx</th>
+                  <th>Index</th>
                   <th>Income Name</th>
                   <th>Category</th>
                   <th>Description</th>

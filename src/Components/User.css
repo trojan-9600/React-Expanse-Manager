@@ -23,3 +23,12 @@
 
   padding: 10px;
 }
+balance {
+  font-size: 30px;
+}
+
+income,
+expanses {
+  padding: 2px 20px;
+  font-size: 20px;
+}
