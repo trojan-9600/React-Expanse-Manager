@@ -11,6 +11,9 @@ export default class Profilebody extends Component {
     this.expanseUpdate = this.expanseUpdate.bind(this);
   }
   componentDidMount() {
+    this.fetchDetails();
+  }
+  fetchDetails = () => {
     // fetch user expansers
     axios
       .get(
@@ -35,7 +38,11 @@ export default class Profilebody extends Component {
       .catch(function (error) {
         console.log(error);
       });
-  }
+  };
+  onUpdate = () => {
+    this.fetchDetails();
+  };
+
   incomeUpdate() {
     let i = 0;
     this.state.incomes.map((income) => {
@@ -45,12 +52,15 @@ export default class Profilebody extends Component {
     return i;
   }
   expanseUpdate() {
-    let i = 0;
-    this.state.expanses.map((expanse) => {
-      i = i + Number(expanse.amount);
-    });
-    console.log(i);
-    return i;
+    return this.state.expanses.reduce((result, expanse) => {
+      return result + Number(expanse.amount);
+    }, 0);
+    // let i = 0;
+    // this.state.expanses.map((expanse) => {
+    //   i = i + Number(expanse.amount);
+    // });
+    // console.log(i);
+    // return i;
   }
   Balance() {
     let I = 0,
@@ -75,6 +85,7 @@ export default class Profilebody extends Component {
           <income>Total Income :{this.incomeUpdate()}</income>
         </div>
         <SimpleTabs
+          onUpdate={this.onUpdate}
           currentuser={this.props.userid}
           incomes={this.state.incomes}
           expanses={this.state.expanses}

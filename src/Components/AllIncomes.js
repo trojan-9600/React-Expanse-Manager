@@ -42,7 +42,8 @@ export default class AllIncomes extends Component {
       .post("http://localhost/expanse_manager/update_income.php", obj)
       .then((res) => {
         console.log(res.data);
-      }, this.setState({}))
+        this.props.onUpdate();
+      })
       .catch((err) => console.log(err));
   }
   render() {

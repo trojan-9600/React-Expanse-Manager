@@ -20,7 +20,7 @@ export default class Incomeform extends Component {
       desc: "",
       amount: "",
       categorys: [],
-      userid: this.props.location.state.user,
+      userid: this.props.user,
     };
 
     this.handleChange = this.handleChange.bind(this);

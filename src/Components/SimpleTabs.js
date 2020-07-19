@@ -63,12 +63,26 @@ export default function SimpleTabs(props) {
 
   function tableExpanse() {
     return props.expanses.map(function (object, i) {
-      return <AllExpanses obj={object} user={props.currentuser} key={i} />;
+      return (
+        <AllExpanses
+          obj={object}
+          user={props.currentuser}
+          onUpdate={props.onUpdate}
+          key={i}
+        />
+      );
     });
   }
   function tableIncomes() {
     return props.incomes.map(function (object, i) {
-      return <AllIncomes obj={object} user={props.currentuser} key={i} />;
+      return (
+        <AllIncomes
+          obj={object}
+          user={props.currentuser}
+          onUpdate={props.onUpdate}
+          key={i}
+        />
+      );
     });
   }
   return (
@@ -90,9 +104,6 @@ export default function SimpleTabs(props) {
             <Link
               to={{
                 pathname: "/incomeform",
-                state: {
-                  user: props.currentuser,
-                },
               }}
             >
               <Button variant="contained" color="primary">
@@ -102,9 +113,6 @@ export default function SimpleTabs(props) {
             <Link
               to={{
                 pathname: "/expanseform",
-                state: {
-                  user: props.currentuser,
-                },
               }}
             >
               <Button variant="contained" color="secondary">
@@ -113,12 +121,12 @@ export default function SimpleTabs(props) {
             </Link>
           </center>
           <Switch>
-            <Route path="/incomeform" component={Incomeform} key={Incomeform} />
-            <Route
-              path="/expanseform"
-              component={Expanseform}
-              key={Expanseform}
-            />
+            <Route path="/incomeform">
+              <Incomeform user={props.currentuser} onUpdate={props.onUpdate} />
+            </Route>
+            <Route path="/expanseform">
+              <Expanseform user={props.currentuser} onUpdate={props.onUpdate} />
+            </Route>
           </Switch>
         </div>
       </TabPanel>

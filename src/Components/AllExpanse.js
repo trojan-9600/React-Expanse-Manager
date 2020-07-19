@@ -31,7 +31,8 @@ export default class AllExpanse extends Component {
       .post("http://localhost/expanse_manager/update_expanse.php", obj)
       .then((res) => {
         console.log(res.data);
-      }, this.setState({}))
+        this.props.onUpdate();
+      })
       .catch((err) => console.log(err));
   }
 
